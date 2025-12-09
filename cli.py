@@ -37,7 +37,7 @@ from model import BERTdLLM  # type: ignore  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="HippoTron masked LLM CLI")
+    parser = argparse.ArgumentParser(description="HippoTron masked dLLM CLI")
     parser.add_argument(
         "-m",
         "--max-new-tokens",
@@ -138,7 +138,7 @@ def main() -> None:
     animate = bool(args.animate)
     max_new_tokens = config.MAX_NEW_TOKENS
 
-    print(maybe_color(use_color, "\nHippoTron Masked LLM", "magenta"))
+    print(maybe_color(use_color, "\nHippoTron Masked dLLM", "magenta"))
     print(f"Model loaded from: {config.OUTPUT_DIR}")
     print("Type ':help' for commands, or enter text to generate.\n")
 
