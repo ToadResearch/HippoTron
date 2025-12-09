@@ -119,5 +119,16 @@ class BERTdLLM:
 if __name__ == "__main__": 
     config = Config()
     model = BERTdLLM(config)
-    ids, history = model.generate("23 year old male with a history of hypertension and diabetes presents with chest pain.", save_history=True)
-    print(model.decode(ids[0]))
+
+    prompt = "23 year old male with a history of hypertension and diabetes presents with chest pain."
+    ids, history = model.generate(prompt, save_history=True)
+    generated_text = model.postprocess(ids[0])
+
+    print("\n=== Prompt ===")
+    print(prompt)
+    print("\n=== Generated ===")
+    print(generated_text)
+    if history:
+        print("\n=== Generation Steps ===")
+        for step, partial in enumerate(history, start=1):
+            print(f"[{step:02d}] {partial}")
