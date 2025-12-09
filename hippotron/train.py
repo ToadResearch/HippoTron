@@ -24,10 +24,11 @@ class DataCollator:
         texts = []
         for f in features:
             if isinstance(f, dict):
-                texts.append(f.get("text", f.get("content", "")))
+                # fallbacks for the text column
+                texts.append(f.get(self.config.TEXT_COLUMN, f.get("text", f.get("content", ""))))
             else:
                 # IterableDataset items might be Example objects
-                texts.append(f["text"] if "text" in f else str(f))
+                texts.append(f[self.config.TEXT_COLUMN] if self.config.TEXT_COLUMN in f else str(f))
 
         # Tokenize all texts to exactly MAX_LEN
         encoded = self.tokenizer(

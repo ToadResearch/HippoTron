@@ -119,5 +119,5 @@ class BERTdLLM:
 if __name__ == "__main__": 
     config = Config()
     model = BERTdLLM(config)
-    ids, history = model.generate("Hello, how are you?")
+    ids, history = model.generate("23 year old male with a history of hypertension and diabetes presents with chest pain.", save_history=True)
     print(model.decode(ids[0]))

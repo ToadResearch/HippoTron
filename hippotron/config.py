@@ -34,6 +34,7 @@ class Config:
 
     # Dataset
     DATASET_NAME: str = "AGBonnet/augmented-clinical-notes"
+    TEXT_COLUMN: str = "note"
     TRAIN_SPLIT: str = "train"
     EVAL_SPLIT: str = "train"
 
