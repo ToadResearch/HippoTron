@@ -22,3 +22,9 @@ Data:
     - [Asclepius](https://huggingface.co/datasets/starmpcc/Asclepius-Synthetic-Clinical-Notes) (BERT-like QA tasks)
     - [MedAlpaca](https://github.com/kbressem/medAlpaca/tree/main) (for multiple-choice QA eval)
 
+
+
+```
+accelerate config
+accelerate launch hippotron/train.py
+```
