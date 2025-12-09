@@ -21,7 +21,7 @@
 
 
 
-<img src="assets/hippotron.gif" alt="[MASK]Tron" width="600" />
+<img src="assets/hippotron-gen.gif" alt="[MASK]Tron" width="600" />
 
 
 
