@@ -89,11 +89,17 @@ if __name__ == "__main__":
         overwrite_output_dir=True,
         max_steps=config.MAX_STEPS,
         per_device_train_batch_size=config.BATCH_SIZE,
+        gradient_accumulation_steps=config.GRAD_ACCUM_STEPS,
+        learning_rate=config.LEARNING_RATE,
+        lr_scheduler_type=config.LR_SCHEDULER_TYPE,
+        warmup_ratio=config.WARMUP_RATIO,
+        weight_decay=config.WEIGHT_DECAY,
         save_strategy="steps",
         save_steps=config.SAVE_STEPS,
         save_total_limit=config.SAVE_TOTAL_LIMIT,
         logging_steps=config.LOGGING_STEPS,
-        remove_unused_columns=False,  # Keep dataset columns for custom collator
+        remove_unused_columns=False,
+        max_grad_norm=1.0,
     )
 
     print("[INFO] Initializing trainer...")

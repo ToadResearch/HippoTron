@@ -122,7 +122,7 @@ if __name__ == "__main__":
 
     prompt = "23 year old male with a history of hypertension and diabetes presents with chest pain."
     ids, history = model.generate(prompt, save_history=False)
-    generated_text = model.postprocess(ids[0][3:])
+    generated_text = model.postprocess(ids[0])
 
     print("\n=== Prompt ===")
     print(prompt)

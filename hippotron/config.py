@@ -32,6 +32,12 @@ class Config:
     LOGGING_STEPS: int = 50
     SAVE_TOTAL_LIMIT: int = 1
 
+    LEARNING_RATE: float = 1e-4
+    WARMUP_RATIO: float = 0.05
+    LR_SCHEDULER_TYPE: str = "cosine"  # "linear", "cosine", "cosine_with_restarts"
+    WEIGHT_DECAY: float = 0.01
+    GRAD_ACCUM_STEPS: int = 1
+
     # Dataset
     DATASET_NAME: str = "AGBonnet/augmented-clinical-notes"
     TEXT_COLUMN: str = "note"
