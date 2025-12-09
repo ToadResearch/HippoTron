@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 @dataclass
 class Config:
     # Model config
-    MODEL_NAME: str = "gatortronS"
+    MODEL_NAME: str = "UFNLP/gatortronS"
     MIN_PREFIX_LEN: int = 16
     MAX_PREFIX_LEN: int = 128
     MAX_LEN: int = 512

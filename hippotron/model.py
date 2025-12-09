@@ -11,9 +11,9 @@ class BERTdLLM:
     def __init__(self, config: Config, device: Optional[str] = None):
         self.config = config
         self.device = get_device() if device is None else device
-        self.model = AutoModelForMaskedLM.from_pretrained(config.MODEL_NAME).to(self.device)
+        self.model = AutoModelForMaskedLM.from_pretrained(config.OUTPUT_DIR).to(self.device)
         self.model.eval()
-        self.tokenizer = AutoTokenizer.from_pretrained(config.MODEL_NAME)
+        self.tokenizer = AutoTokenizer.from_pretrained(config.OUTPUT_DIR)
 
         self.schedule = torch.linspace(1, 0, config.NUM_STEPS) # linear scheduler from 1 to 0
     
