@@ -20,7 +20,9 @@
     - [MedAlpaca](https://github.com/kbressem/medAlpaca/tree/main) (for multiple-choice QA eval)
 
 
---- 
+
+<img src="assets/hippotron.gif" alt="[MASK]Tron" width="600" />
+
 
 
 **Setup:**
