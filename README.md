@@ -19,7 +19,7 @@
     - [Asclepius](https://huggingface.co/datasets/starmpcc/Asclepius-Synthetic-Clinical-Notes) (BERT-like QA tasks)
     - [MedAlpaca](https://github.com/kbressem/medAlpaca/tree/main) (for multiple-choice QA eval)
 
-
+---
 
 <img src="assets/hippotron-gen.gif" alt="[MASK]Tron" width="600" />
 <img src="assets/hippotron-gen-2.gif" alt="[MASK]Tron" width="600" />
