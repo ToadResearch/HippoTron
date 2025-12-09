@@ -3,7 +3,7 @@
 > Let's find out what happens when you turn a clinical BERT model into a masked diffusion LLM!
 
 <!-- smaller image size -->
-<img src="assets/hippo2.png" alt="[MASK]Tron" width="360" />
+<img src="assets/hippo.png" alt="[MASK]Tron" width="360" />
 
 
 
