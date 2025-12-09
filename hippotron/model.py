@@ -121,8 +121,8 @@ if __name__ == "__main__":
     model = BERTdLLM(config)
 
     prompt = "23 year old male with a history of hypertension and diabetes presents with chest pain."
-    ids, history = model.generate(prompt, save_history=True)
-    generated_text = model.postprocess(ids[0])
+    ids, history = model.generate(prompt, save_history=False)
+    generated_text = model.postprocess(ids[0][3:])
 
     print("\n=== Prompt ===")
     print(prompt)
