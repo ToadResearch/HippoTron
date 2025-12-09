@@ -2,7 +2,7 @@
 
 > Let's find out what happens when you turn a clinical BERT model into a masked diffusion LLM!
 
-![Hippo](hippo.jpg)
+![Hippo](assets/hippo2.png)
 
 
 
