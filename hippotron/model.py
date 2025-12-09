@@ -33,7 +33,7 @@ class BERTdLLM:
             clean_up_tokenization_spaces=True
         )
 
-    def preprocess(self, x: str) -> tuple[torch.Tensor, torch.Tensor, int]:
+    def preprocess(self, x: str, max_new_tokens: int | None = None) -> tuple[torch.Tensor, torch.Tensor, int]:
         mask_token_id = self.tokenizer.mask_token_id
         max_prefix_length = self.config.MAX_PREFIX_LEN
         max_length = self.config.MAX_LEN
@@ -46,13 +46,21 @@ class BERTdLLM:
         prompt_length = input_ids_prompt.shape[0]
         prompt_length = min(prompt_length, max_prefix_length)
 
+        if max_new_tokens is None:
+            total_length = max_length
+        else:
+            assert max_new_tokens > 0, "max_new_tokens must be greater than 0"
+            assert max_new_tokens < self.config.MAX_LEN, "max_new_tokens must be less than the max length"
+            total_length = min(max_length, prompt_length + max_new_tokens)
+
+
         # create array of mask tokens to be generated, and replace beginning with prompt
-        current_ids = torch.full((1, max_length), fill_value=mask_token_id, dtype=torch.long)
+        current_ids = torch.full((1, total_length), fill_value=mask_token_id, dtype=torch.long)
         current_ids[0, :prompt_length] = input_ids_prompt[:prompt_length].clone()
 
-        current_attention = torch.ones((1, max_length), dtype=torch.long)
+        current_attention = torch.ones((1, total_length), dtype=torch.long)
 
-        return current_ids.to(self.device), current_attention.to(self.device), prompt_length
+        return current_ids.to(self.device), current_attention.to(self.device)
 
     def postprocess(self, ids: torch.Tensor) -> str:
         return self.tokenizer.decode(ids, skip_special_tokens=True)
@@ -68,11 +76,11 @@ class BERTdLLM:
         # https://github.com/nathan-barry/RoBERTaDiffusion/blob/fb9309d2f2c962c418c68d4c421ff34d7184f5cf/inference.py#L48
     
     @torch.no_grad()
-    def generate(self, text: str, save_history: bool = False):
+    def generate(self, text: str, save_history: bool = False, max_new_tokens: int | None = None):
         mask_token_id = self.config.MASK_TOKEN_ID
 
         # process the prompt and set up masked array
-        initial_ids, attention_mask, prompt_length = self.preprocess(text)
+        initial_ids, attention_mask = self.preprocess(text, max_new_tokens)
         x = initial_ids.clone()
         B, L = x.shape
 
@@ -121,7 +129,7 @@ if __name__ == "__main__":
     model = BERTdLLM(config)
 
     prompt = "23 year old male with a history of hypertension and diabetes presents with chest pain."
-    ids, history = model.generate(prompt, save_history=False)
+    ids, history = model.generate(prompt, save_history=False, max_new_tokens=10)
     generated_text = model.postprocess(ids[0])
 
     print("\n=== Prompt ===")
