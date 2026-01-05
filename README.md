@@ -4,6 +4,9 @@
 
 <img src="assets/hippo.png" alt="[MASK]Tron" width="360" />
 
+We turn GatorTronS -- a BERT model trained on UF Health data released under the assumption that *it could not* generate text -- into a masked diffusion LLM capable of generating text. Although we use the synthetic GatorTron variant (trained on synthetic data produced by [GatorTronGPT](https://www.nature.com/articles/s41746-023-00958-w)), we will not be releasing it due to the sensitive nature of the underlying data. We believe that bad actors with access to enough compute and the right datasets could potentially extract patient information from clinical BERT models like GatorTron that were trained on real patient data.
+
+
 **Based on two repos:**
 1) [dLLM](https://github.com/ZHZisZZ/dllm)
 2) [RoBERTa Diffusion](https://github.com/nathan-barry/RoBERTaDiffusion/tree/main)
